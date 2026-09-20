@@ -1,0 +1,13 @@
+# never commit secrets
+.streamlit/secrets.toml
+*.env
+.env
+
+# never commit test data
+*.pdf
+*.csv
+
+# python junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
