@@ -103,19 +103,27 @@ if missing:
 
 
 # ============================== step 1: key ==============================
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.markdown('<p class="step">Step 1 · Groq API key</p>', unsafe_allow_html=True)
-api_key = st.text_input(
-    "Groq API key", type="password",
-    placeholder="Paste your Groq key here (starts with gsk_...)",
-    label_visibility="collapsed",
-    help="Entered fresh each session. Never saved to the file or shared.",
-)
-st.markdown('</div>', unsafe_allow_html=True)
+# Prefer a backend key stored in Streamlit Secrets (never in Git).
+# If it isn't set, fall back to asking the user for one.
+api_key = None
+try:
+    api_key = st.secrets["GROQ_API_KEY"]
+except Exception:
+    api_key = None
 
 if not api_key:
-    st.info("Enter your Groq API key above to continue.")
-    st.stop()
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown('<p class="step">Step 1 · Groq API key</p>', unsafe_allow_html=True)
+    api_key = st.text_input(
+        "Groq API key", type="password",
+        placeholder="Paste your Groq key here (starts with gsk_...)",
+        label_visibility="collapsed",
+        help="Entered fresh each session. Never saved to the file or shared.",
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
+    if not api_key:
+        st.info("Enter your Groq API key above to continue.")
+        st.stop()
 
 MODEL = "openai/gpt-oss-120b"   # confirmed available on this Groq account; fallback: openai/gpt-oss-20b
 
