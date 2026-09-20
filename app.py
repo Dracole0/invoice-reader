@@ -85,7 +85,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown('<p class="display">Let\'s read<br>that invoice.</p>', unsafe_allow_html=True)
+st.markdown('<p class="display">Let\'s read that invoice.</p>', unsafe_allow_html=True)
 st.markdown(
     '<p class="sub">pdfplumber pulls the text, you review it, then Groq extracts the labels. '
     "Every value is a draft — verify it. Test invoices only.</p>",
