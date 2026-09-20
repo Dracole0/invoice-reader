@@ -38,7 +38,10 @@ st.markdown(
         --accent:#e8622c; --line:#e3e3e0;
       }
       .stApp { background: var(--bg); }
-      .block-container { max-width: 820px; padding-top: 2rem; padding-bottom: 4rem; }
+      .block-container { max-width: 820px; padding-top: 4.5rem; padding-bottom: 4rem; }
+      /* hide Streamlit's top toolbar/header that overlaps content */
+      header[data-testid="stHeader"]{ background: transparent; height: 0; }
+      #MainMenu, footer{ visibility: hidden; }
       html, body, [class*="css"]{
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
         color:var(--ink);
@@ -59,8 +62,8 @@ st.markdown(
       [data-testid="stTable"] td, [data-testid="stTable"] th{
         color:var(--ink) !important; background:#ffffff !important;
       }
-      .display{ font-size:2.6rem; font-weight:800; letter-spacing:-0.03em; line-height:1.05;
-                margin:0 0 0.25rem; color:var(--ink) !important; }
+      .display{ font-size:2.6rem; font-weight:800; letter-spacing:-0.03em; line-height:1.12;
+                margin:0.5rem 0 0.25rem; padding-top:0.3rem; color:var(--ink) !important; }
       .sub{ color:var(--muted) !important; font-size:0.98rem; margin:0 0 1.75rem; }
       .card{ background:var(--card); border-radius:22px; padding:1.4rem 1.6rem;
              border:1px solid var(--line); margin-bottom:1.1rem; }
@@ -85,7 +88,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown('<p class="display">Let\'s read that invoice.</p>', unsafe_allow_html=True)
+st.markdown('<p class="display">Let\'s read<br>that invoice.</p>', unsafe_allow_html=True)
 st.markdown(
     '<p class="sub">pdfplumber pulls the text, you review it, then Groq extracts the labels. '
     "Every value is a draft — verify it. Test invoices only.</p>",
